@@ -25,7 +25,8 @@
     const novo_natjecanje = ref("");
 
     function dodaj_natjecanje(sportas_index) {
-        sportasi.value[sportas_index].natjecanja.push(novo_natjecanje);
+        sportasi.value[sportas_index].natjecanja.push(novo_natjecanje.value);
+        novo_natjecanje.value = "";
     }
 
     function ukloni_natjecanje(sportas_index, natjecanje_index) {
@@ -40,28 +41,36 @@
         Sportaši:
         <hr>
 
-        <input type="text" v-model="novo_natjecanje"
-        <div v-for="(sportas, indexSportasa) in sportasi.sort(a, b) -> b.natjecanja.length-a.natjecanja.lenght)">
-           <span v-if="indexSportasa == 0" > zlatni emoji </span>
-           <span v-if="indexportasa == 1" > srebrni emoji </span>
-           <span v-if="indexSportasa == 2" > bronca emoji </span>
+        <input type="text" v-model="novo_natjecanje"/>
+        <div v-for="(sportas, indexSportasa) in sportasi.sort((a, b) => b.natjecanja.length-a.natjecanja.length)">
+           <span v-if="indexSportasa == 0" > 🥇 </span>
+           <span v-if="indexportasa == 1" > 🥈 </span>
+           <span v-if="indexSportasa == 2" > 🥉 </span>
 
-            <b> Ime: </b> {{  sportas.ime }} <br>
-           <b> Disicplina: </b> {{  sportas.disciplina }} <br>
+           <b> Ime: </b> {{  sportas.ime }} <br>
+           <b> Disciplina: </b> {{  sportas.disciplina }} <br>
            <b> Godine:</b> {{  sportas.godine }} <br>
            <b> Natjecanje:</b>
-           <button @click="dodaj_natjecanje(indexSportasa)>+</button> 
-           <TransitionGroup name="list" tag"ul>
-
+           <button @click="dodaj_natjecanje(indexSportasa)">+</button> 
+           
+           <TransitionGroup name="list" tag = "ul">
             <li v-for="(natjecanje, indexNatjecanja) in sportas.natjecanja" :key="natjecanje">
-                <button @click=""ukloni_natjecanje(indexSportasa, indexNatjecanja")>-<button> {{ natjecanje }}</button>
+                <button @click="ukloni_natjecanje(indexSportasa, indexNatjecanja)">-</button> {{ natjecanje }}
             </li>
-        </TransitionGroup>
-           <hr>
-           </div>
+            </TransitionGroup>
+           <hr />
+        </div>
     </div>
 </template>
 
 <style scoped>
-
+    .list-enter-active,
+    .list-leave-active {
+        transition: all 0.5s ease;
+    }
+    .list-enter-from,
+    .list-leave-to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
 </style>

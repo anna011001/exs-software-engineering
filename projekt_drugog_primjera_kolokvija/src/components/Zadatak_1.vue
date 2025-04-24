@@ -5,6 +5,8 @@ const broj1 = ref(0);
 const broj2 = ref(0);
 const operacija = ref("");
 
+
+// computed funkcija se ažurira na temelju reaktivnih varijabli, dok obična funkcija nije reaktivna i ne ažurira se automatski kada se promijene ulazne vrijednosti.
 const provjeraOperacije = computed(() => {
   return ["zbrajanje", "oduzimanje", "mnozenje", "dijeljenje"].includes(operacija.value.toLowerCase());
 });
@@ -38,7 +40,3 @@ const provjeraOperacije = computed(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Stilovi po potrebi */
-</style>

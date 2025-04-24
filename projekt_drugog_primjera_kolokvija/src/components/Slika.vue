@@ -8,7 +8,7 @@ function starost() {
 
 <template>
   <div>
-    <img @click="$emit('kliknuto')" :src="slika" height="100" />
+    <img @click="$emit('povecaj')" :src="props.slika" height="100" />
     <br />
     <b>Slikar:</b> {{ slikar }}<br />
     <b>Naslov:</b>
